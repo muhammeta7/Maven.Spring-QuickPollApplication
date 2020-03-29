@@ -3,6 +3,7 @@ package io.zipcoder.tc_spring_poll_application.controllers;
 import io.zipcoder.tc_spring_poll_application.domain.Vote;
 import io.zipcoder.tc_spring_poll_application.repositories.VoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,9 +26,9 @@ public class VoteController {
         return new ResponseEntity<>(responseHeaders, HttpStatus.CREATED);
     }
 
-    @GetMapping(value="/polls/votes")
-    public Iterable<Vote> getAllVotes() {
-        return voteRepository.findAll();
+    @GetMapping("/polls/votes")
+    public Iterable<Vote> getAllVotes(Pageable p) {
+        return voteRepository.findAll(p);
     }
 
     @GetMapping("/polls/{pollId}/votes")
