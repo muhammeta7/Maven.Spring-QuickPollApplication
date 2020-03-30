@@ -23,7 +23,7 @@ public class PollController {
 
     // GET
     @GetMapping("/polls")
-    public ResponseEntity<Iterable<Poll>> getAllPolls(Pageable p) {
+    public ResponseEntity<Page<Poll>> getAllPolls(Pageable p) {
         Page<Poll> allPolls = pollRepository.findAll(p);
         return new ResponseEntity<>(allPolls, HttpStatus.OK);
     }
